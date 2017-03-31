@@ -1,0 +1,116 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductLabel" jhiTranslate="productServiceApp.product.home.createOrEditLabel">Create or edit a Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!product.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="product.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="product.name"
+            required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.quantity" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                [(ngModel)]="product.quantity"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="product.description"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.shortDescription" for="field_shortDescription">Short Description</label>
+            <input type="text" class="form-control" name="shortDescription" id="field_shortDescription"
+                [(ngModel)]="product.shortDescription"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.model" for="field_model">Model</label>
+            <input type="text" class="form-control" name="model" id="field_model"
+                [(ngModel)]="product.model"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.weight" for="field_weight">Weight</label>
+            <input type="number" class="form-control" name="weight" id="field_weight"
+                [(ngModel)]="product.weight"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.addedDate" for="field_addedDate">Added Date</label>
+            <div class="input-group">
+                <input id="field_addedDate" type="text" class="form-control" name="addedDate" ngbDatepicker  #addedDateDp="ngbDatepicker" [(ngModel)]="product.addedDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="addedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.minOrder" for="field_minOrder">Min Order</label>
+            <input type="number" class="form-control" name="minOrder" id="field_minOrder"
+                [(ngModel)]="product.minOrder"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.orderQuantity" for="field_orderQuantity">Order Quantity</label>
+            <input type="number" class="form-control" name="orderQuantity" id="field_orderQuantity"
+                [(ngModel)]="product.orderQuantity"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="product.price"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.product.sortOrder" for="field_sortOrder">Sort Order</label>
+            <input type="number" class="form-control" name="sortOrder" id="field_sortOrder"
+                [(ngModel)]="product.sortOrder"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="productServiceApp.product.tags" for="field_tags">Tags</label>
+            <select class="form-control" id="field_tags" multiple name="tags" [(ngModel)]="product.tags">
+                <option [ngValue]="getSelected(product.tags, tagOption)" *ngFor="let tagOption of tags; trackBy: trackTagById">{{tagOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="productServiceApp.product.appList" for="field_appList">App List</label>
+            <select class="form-control" id="field_appList" name="appList" [(ngModel)]="product.appList" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="appListOption.id === product.appList?.id ? product.appList : appListOption" *ngFor="let appListOption of applists; trackBy: trackAppListById">{{appListOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

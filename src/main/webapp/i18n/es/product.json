@@ -1,0 +1,34 @@
+{
+    "productServiceApp": {
+        "product" : {
+            "home": {
+                "title": "Products",
+                "createLabel": "Crear nuevo Product",
+                "createOrEditLabel": "Crear o editar Product"
+            },
+            "created": "Un nuevo Product ha sido creado con el identificador {{ param }}",
+            "updated": "Un Product ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Product ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Product {{ id }}?"
+            },
+            "detail": {
+                "title": "Product"
+            },
+            "name": "Name",
+            "quantity": "Quantity",
+            "description": "Description",
+            "shortDescription": "Short Description",
+            "model": "Model",
+            "weight": "Weight",
+            "addedDate": "Added Date",
+            "minOrder": "Min Order",
+            "orderQuantity": "Order Quantity",
+            "price": "Price",
+            "sortOrder": "Sort Order",
+            "productImage": "Product Image",
+            "tags": "Tags",
+            "appList": "App List"
+        }
+    }
+}

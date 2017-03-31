@@ -1,0 +1,27 @@
+{
+    "productServiceApp": {
+        "appList" : {
+            "home": {
+                "title": "App Lists",
+                "createLabel": "Create a new App List",
+                "createOrEditLabel": "Create or edit a App List"
+            },
+            "created": "A new App List is created with identifier {{ param }}",
+            "updated": "A App List is updated with identifier {{ param }}",
+            "deleted": "A App List is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete App List {{ id }}?"
+            },
+            "detail": {
+                "title": "App List"
+            },
+            "name": "Name",
+            "registration": "Registration",
+            "jsonconfig": "Jsonconfig",
+            "isEnabled": "Is Enabled",
+            "product": "Product",
+            "tag": "Tag",
+            "user": "User"
+        }
+    }
+}

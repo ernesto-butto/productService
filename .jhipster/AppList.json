@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "appList"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tag",
+            "otherEntityName": "tag",
+            "otherEntityRelationshipName": "appList"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "registration",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "jsonconfig",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isEnabled",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170331205818",
+    "entityTableName": "app_list",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

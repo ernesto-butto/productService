@@ -41,6 +41,15 @@ public class CacheConfiguration {
             cm.createCache(io.catwizard.productservice.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.catwizard.productservice.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.catwizard.productservice.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.AppList.class.getName(), jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.AppList.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.AppList.class.getName() + ".tags", jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.Product.class.getName(), jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.Product.class.getName() + ".productImages", jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.Product.class.getName() + ".tags", jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.ProductImage.class.getName(), jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.Tag.class.getName(), jcacheConfiguration);
+            cm.createCache(io.catwizard.productservice.domain.Tag.class.getName() + ".products", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

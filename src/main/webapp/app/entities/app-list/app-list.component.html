@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span jhiTranslate="productServiceApp.appList.home.title">App Lists</span>
+        <button class="btn btn-primary float-right create-app-list" [routerLink]="['/', { outlets: { popup: ['app-list-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="productServiceApp.appList.home.createLabel">
+            Create new App List
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="appLists">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="productServiceApp.appList.name">Name</span></th>
+            <th><span jhiTranslate="productServiceApp.appList.registration">Registration</span></th>
+            <th><span jhiTranslate="productServiceApp.appList.jsonconfig">Jsonconfig</span></th>
+            <th><span jhiTranslate="productServiceApp.appList.isEnabled">Is Enabled</span></th>
+            <th><span jhiTranslate="productServiceApp.appList.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let appList of appLists ;trackBy: trackId">
+                <td><a [routerLink]="['../app-list', appList.id ]">{{appList.id}}</a></td>
+                <td>{{appList.name}}</td>
+                <td>{{appList.registration | date:'mediumDate'}}</td>
+                <td>{{appList.jsonconfig}}</td>
+                <td>{{appList.isEnabled}}</td>
+                <td>
+                    {{appList.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../app-list', appList.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'app-list/'+ appList.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'app-list/'+ appList.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

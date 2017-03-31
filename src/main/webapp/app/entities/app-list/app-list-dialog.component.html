@@ -1,0 +1,68 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAppListLabel" jhiTranslate="productServiceApp.appList.home.createOrEditLabel">Create or edit a App List</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!appList.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="appList.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.appList.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="appList.name"
+            required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.appList.registration" for="field_registration">Registration</label>
+            <div class="input-group">
+                <input id="field_registration" type="text" class="form-control" name="registration" ngbDatepicker  #registrationDp="ngbDatepicker" [(ngModel)]="appList.registration"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="registrationDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.appList.jsonconfig" for="field_jsonconfig">Jsonconfig</label>
+            <input type="text" class="form-control" name="jsonconfig" id="field_jsonconfig"
+                [(ngModel)]="appList.jsonconfig"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="productServiceApp.appList.isEnabled" for="field_isEnabled">Is Enabled</label>
+            <input type="checkbox" class="form-control" name="isEnabled" id="field_isEnabled"
+                [(ngModel)]="appList.isEnabled"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="productServiceApp.appList.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="appList.user" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === appList.user?.id ? appList.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

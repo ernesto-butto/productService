@@ -1,0 +1,41 @@
+
+<div *ngIf="appList">
+    <h2><span jhiTranslate="productServiceApp.appList.detail.title">App List</span> {{appList.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="productServiceApp.appList.name">Name</span></dt>
+        <dd>
+            <span>{{appList.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.appList.registration">Registration</span></dt>
+        <dd>
+            <span>{{appList.registration | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.appList.jsonconfig">Jsonconfig</span></dt>
+        <dd>
+            <span>{{appList.jsonconfig}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.appList.isEnabled">Is Enabled</span></dt>
+        <dd>
+            <span>{{appList.isEnabled}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.appList.user">User</span></dt>
+        <dd>
+            {{appList.user?.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'app-list/'+ appList.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,40 @@
+
+<div *ngIf="productImage">
+    <h2><span jhiTranslate="productServiceApp.productImage.detail.title">Product Image</span> {{productImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="productServiceApp.productImage.title">Title</span></dt>
+        <dd>
+            <span>{{productImage.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.productImage.image">Image</span></dt>
+        <dd>
+            <div *ngIf="productImage.image">
+                <a (click)="openFile(productImage.imageContentType, productImage.image)">
+                    <img [src]="'data:' + productImage.imageContentType + ';base64,' + productImage.image" style="max-width: 100%;" alt="productImage image"/>
+                </a>
+                {{productImage.imageContentType}}, {{byteSize(productImage.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.productImage.product">Product</span></dt>
+        <dd>
+            <div *ngIf="productImage.product">
+                <a [routerLink]="['/product', productImage.product?.id]">{{productImage.product?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-image/'+ productImage.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

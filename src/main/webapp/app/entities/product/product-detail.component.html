@@ -1,0 +1,77 @@
+
+<div *ngIf="product">
+    <h2><span jhiTranslate="productServiceApp.product.detail.title">Product</span> {{product.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="productServiceApp.product.name">Name</span></dt>
+        <dd>
+            <span>{{product.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{product.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.description">Description</span></dt>
+        <dd>
+            <span>{{product.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.shortDescription">Short Description</span></dt>
+        <dd>
+            <span>{{product.shortDescription}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.model">Model</span></dt>
+        <dd>
+            <span>{{product.model}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.weight">Weight</span></dt>
+        <dd>
+            <span>{{product.weight}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.addedDate">Added Date</span></dt>
+        <dd>
+            <span>{{product.addedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.minOrder">Min Order</span></dt>
+        <dd>
+            <span>{{product.minOrder}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.orderQuantity">Order Quantity</span></dt>
+        <dd>
+            <span>{{product.orderQuantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.price">Price</span></dt>
+        <dd>
+            <span>{{product.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.sortOrder">Sort Order</span></dt>
+        <dd>
+            <span>{{product.sortOrder}}</span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.tags">Tags</span></dt>
+        <dd>
+            <span *ngFor="let tags of product.tags; let last = last">
+                <a [routerLink]="['/tag', tags?.id ]">{{tags.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="productServiceApp.product.appList">App List</span></dt>
+        <dd>
+            <div *ngIf="product.appList">
+                <a [routerLink]="['/app-list', product.appList?.id]">{{product.appList?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

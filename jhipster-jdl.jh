@@ -1,0 +1,47 @@
+entity AppList{
+name String required,
+registration LocalDate,
+jsonconfig String,
+isEnabled Boolean
+}
+
+entity Product{
+name String required,
+quantity Integer,
+description String,
+shortDescription String,
+model String,
+weight BigDecimal,
+addedDate LocalDate,
+minOrder Integer,
+orderQuantity Integer,
+price Long,
+sortOrder Integer
+
+}
+
+entity ProductImage{
+title String required,
+image ImageBlob required
+
+}
+
+entity Tag{
+name String required
+}
+
+relationship ManyToOne{
+AppList{user(login)} to User{appList}
+
+}
+relationship OneToMany{
+AppList{product} to Product{appList},
+AppList{tag} to Tag{appList},
+Product{productImage} to ProductImage{product}
+}
+
+relationship ManyToMany {
+  Product{tags} to Tag{product}
+}
+
+
